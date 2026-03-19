@@ -1,72 +1,60 @@
-import { Paper, Stack } from '@mui/material';
-import dayjs from 'dayjs';
+import { Button, Paper, Stack, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 
-import DatePicker from '@/components/ui/Forms/DatePicker';
-import Select from '@/components/ui/Forms/Select';
+import AuthLayout from '@/components/layouts/AuthLayout';
 import TextField from '@/components/ui/Forms/TextField';
+import session from '@/utils/session';
 
 const Login = () => {
-  const { control, watch } = useForm({
-    defaultValues: {
-      filterDate: dayjs(),
-    },
-  });
+  const navigate = useNavigate();
 
-  const username = watch('username');
+  const { control, handleSubmit } = useForm();
 
-  const category = watch('category');
-
-  const filterDate = watch('filterDate');
-
-  console.log('username:', username);
-  console.log('category:', category);
-  console.log('filterDate:', filterDate);
+  const onSubmit = (formValues) => {
+    console.log('login data:', formValues);
+    session.setSession('dummy-token');
+    navigate('/');
+  };
 
   return (
-    <Stack
-      spacing={2}
-      alignItems={'center'}
-      justifyContent={'center'}
-      height={'100vh'}
-    >
+    <AuthLayout>
       <Paper
         sx={{
-          width: 600,
           padding: 2,
+          width: 500,
         }}
       >
-        <DatePicker
-          name="filterDate"
-          control={control}
-          label={'pilih tanggal'}
-        />
-        <TextField name={'username'} control={control} label={'Username'} />
-        <Select
-          name={'category'}
-          control={control}
-          label={'pilih kategori'}
-          options={[
-            {
-              value: 'kategori 1',
-              label: 'kategori 1',
-            },
-            {
-              value: 'kategori 2',
-              label: 'kategori 2',
-            },
-            {
-              value: 'kategori 3',
-              label: 'kategori 3',
-            },
-            {
-              value: 'kategori 4',
-              label: 'kategori 4',
-            },
-          ]}
-        />
+        <Typography
+          variant="h5"
+          component={'h1'}
+          align="center"
+          marginBottom={2}
+        >
+          Masuk
+        </Typography>
+        <Stack
+          flexDirection={'column'}
+          gap={1}
+          component={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <TextField label={'Email'} control={control} name={'email'} />
+          <TextField label={'Password'} control={control} name={'password'} />
+          <Button type="submit" variant="contained" fullWidth>
+            Masuk ke akun anda
+          </Button>
+          <Button
+            type="button"
+            variant="text"
+            onClick={() => navigate('/signup')}
+            fullWidth
+          >
+            Daftar Baru
+          </Button>
+        </Stack>
       </Paper>
-    </Stack>
+    </AuthLayout>
   );
 };
 
