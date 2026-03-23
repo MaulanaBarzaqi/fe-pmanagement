@@ -1,10 +1,11 @@
 import { AccountCircle } from '@mui/icons-material';
 import { Box, Stack } from '@mui/material';
 import { grey } from '@mui/material/colors';
+import { useNavigate } from 'react-router';
 
 import Dropdown from '../../../ui/Dropdown';
+
 import session from '@/utils/session';
-import { useNavigate } from 'react-router';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -35,8 +36,7 @@ const Navbar = () => {
             {
               label: 'Logout',
               onClick() {
-               session.clearSession(),
-               navigate('/login')
+                (session.clearSession(), navigate('/login'));
               },
             },
           ]}
