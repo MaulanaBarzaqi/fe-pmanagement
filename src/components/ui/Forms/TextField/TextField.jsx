@@ -1,7 +1,5 @@
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import {
-  TextField as BaseTextField,
-  Box,
   FormControl,
   FormHelperText,
   IconButton,
@@ -43,6 +41,7 @@ const TextField = ({
               marginBottom: 2,
             }}
             variant="outlined"
+            {...props}
           >
             <InputLabel htmlFor={id}>{label}</InputLabel>
             <OutlinedInput

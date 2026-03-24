@@ -3,12 +3,12 @@ import axios from 'axios';
 import session from './session';
 
 const network = axios.create({
-  baseURL: 'http://127.0.0.1:3030/v1',
+  baseURL: 'http://127.0.0.1:3030',
 });
 
 network.interceptors.request.use(
   (config) => {
-    const token = session.getSession();
+    const token = session.getToken();
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
