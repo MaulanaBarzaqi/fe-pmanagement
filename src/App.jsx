@@ -1,7 +1,7 @@
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { createBrowserRouter, Link, RouterProvider } from 'react-router';
+import { createBrowserRouter, RouterProvider } from 'react-router';
 
 import authLoader from './components/layouts/AuthLayout/AuthLayout.loader';
 import sidebarLoader from './components/layouts/SidebarLayout/sidebarLayout.loader';
@@ -38,12 +38,16 @@ const router = createBrowserRouter([
   {
     path: '/projects',
     loader: sidebarLoader,
-    element: <Projects />,
-  },
-  {
-    path: '/projects/:id',
-    loader: sidebarLoader,
-    element: <DetailProject />,
+    children: [
+      {
+        path: 'projects',
+        element: <Projects />,
+      },
+      {
+        path: '/projects/:id',
+        element: <DetailProject />,
+      },
+    ],
   },
   {
     path: '/settings',
