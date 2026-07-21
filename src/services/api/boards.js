@@ -15,7 +15,7 @@ const boards = {
   async detail(boardId) {
     return network.get(`/api/v1/boards/${boardId}`);
   },
-  async list(boardId) {
+  async lists(boardId) {
     return network.get(`/api/v1/boards/${boardId}/lists`);
   },
   async updateListPosition(boardId, data) {
@@ -24,7 +24,7 @@ const boards = {
   async addMember(boardId, userIds) {
     return network.post(`/api/v1/boards/${boardId}/members`, userIds);
   },
-  async getMember(boardId) {
+  async getMembers(boardId) {
     return network.get(`/api/v1/boards/${boardId}/members`);
   },
 };

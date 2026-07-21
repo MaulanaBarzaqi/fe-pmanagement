@@ -12,6 +12,7 @@ import Projects from './components/pages/Projects';
 import DetailProject from './components/pages/Projects/DetailProject';
 import Settings from './components/pages/Settings';
 import SnackbarProvider from './components/ui/Snackbar';
+import detailProjectLoader from './components/pages/Projects/DetailProject/DetailProject.loader';
 
 const theme = createTheme({
   typography: {
@@ -40,11 +41,12 @@ const router = createBrowserRouter([
     loader: sidebarLoader,
     children: [
       {
-        path: 'projects',
+        path: '/projects',
         element: <Projects />,
       },
       {
         path: '/projects/:id',
+        loader: detailProjectLoader,
         element: <DetailProject />,
       },
     ],

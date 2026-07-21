@@ -1,25 +1,22 @@
-import { Box, Button, Stack } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useForm, useWatch } from 'react-hook-form';
-import { Link } from 'react-router';
-import { useDebounce } from 'use-debounce';
+import { Box, Button, colors, Paper, Stack, Typography } from '@mui/material';
 
-import ModalAddNewProject from './Modals/ModalAddNewProject';
+import { Link } from 'react-router';
 
 import SidebarLayout from '@/components/layouts/SidebarLayout';
-import TextField from '@/components/ui/Forms/TextField';
-import Pagination from '@/components/ui/Pagination';
-import Table from '@/components/ui/Table';
+import { useEffect, useState } from 'react';
 import services from '@/services';
+import Table from '@/components/ui/Table';
 import datetime from '@/utils/datetime';
+import TextField from '@/components/ui/Forms/TextField';
+import { useForm, useWatch } from 'react-hook-form';
+import { useDebounce } from 'use-debounce';
+import Pagination from '@/components/ui/Pagination';
+import ModalAddNewProject from './Modals/ModalAddNewProject';
 
 const Projects = () => {
   const [isLoading, setLoading] = useState(false);
-
   const [boardsData, setBoardsData] = useState([]);
-
   const [boardsMeta, setBoardsMeta] = useState({});
-
   const [page, setPage] = useState(1);
 
   const [openModalAddNewProject, setOpenModalAddNewProject] = useState(false);
@@ -54,7 +51,6 @@ const Projects = () => {
   }, [debounceSearch, page]);
 
   const handleOpenAddNewProject = () => setOpenModalAddNewProject(true);
-
   const handleCloseAddNewProject = async () => {
     await fetchBoardsData();
     setOpenModalAddNewProject(false);
@@ -90,17 +86,18 @@ const Projects = () => {
               variant="contained"
               onClick={handleOpenAddNewProject}
             >
-              Buat Project Baru
+              Buat proyek baru
             </Button>
           </Box>
         </Stack>
+
         <Table
-          isloading={isLoading}
+          isLoading={isLoading}
           data={boardsData}
           columns={[
             {
               id: 'title',
-              label: 'Nama Proyek',
+              label: 'Nama proyek',
             },
             {
               id: 'description',
@@ -122,7 +119,7 @@ const Projects = () => {
                 return (
                   <Link to={`/projects/${data.public_id}`}>
                     <Button type="button" variant="outlined">
-                      Detail Proyek
+                      Detail proyek
                     </Button>
                   </Link>
                 );
