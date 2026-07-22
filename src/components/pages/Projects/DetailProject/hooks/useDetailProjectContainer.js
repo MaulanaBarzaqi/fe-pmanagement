@@ -37,6 +37,7 @@ const useDetailProjectContainer = () => {
   };
   const handleDragEnd = (event) => {
     const { active, over } = event;
+    setActiveDragItem(null);
 
     if (!over) return;
 

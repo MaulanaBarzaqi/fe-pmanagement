@@ -19,7 +19,7 @@ const CreateNewList = () => {
       sx={{
         flexBasis: 300,
         flexShrink: 0,
-        overflow: 'auto',
+        overflowY: 'auto',
       }}
     >
       {showFormCreateList ? (
@@ -34,6 +34,7 @@ const CreateNewList = () => {
             control={control}
             name="title"
             label={'Nama daftar tugas'}
+            rows={1}
             fullWidth
             autoFocus
           />

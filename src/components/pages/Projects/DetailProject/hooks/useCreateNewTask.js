@@ -14,7 +14,7 @@ const useCreateNewTask = (listId) => {
 
   const taskItemsData = detailProjectContext.getTaskItemsByListId(listId);
 
-  const taskItemDataIds = useMemo(() => {
+  const taskItemsDataIds = useMemo(() => {
     return taskItemsData.map((item) => item.public_id);
   }, [taskItemsData]);
 
@@ -39,7 +39,7 @@ const useCreateNewTask = (listId) => {
     await services.cards.create({
       ...values,
       list_id: listId,
-      position: taskItemDataIds.length === 0 ? 1 : taskItemDataIds.length + 1,
+      position: taskItemsDataIds.length === 0 ? 1 : taskItemsDataIds.length + 1,
     });
 
     setLoading(false);

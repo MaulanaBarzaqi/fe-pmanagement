@@ -1,7 +1,7 @@
 import { Paper, Stack, Typography } from '@mui/material';
 
 import { CSS } from '@dnd-kit/utilities';
-import useTaskSortableItems from '../hooks/useTaskSortableItems';
+import useTaskSortableItem from '../hooks/useTaskSortableItem';
 
 const TaskSortableItem = ({ id, item, listId }) => {
   const {
@@ -12,7 +12,7 @@ const TaskSortableItem = ({ id, item, listId }) => {
     setNodeRef,
     transform,
     transition,
-  } = useTaskSortableItems({ id, item, listId });
+  } = useTaskSortableItem({ id, item, listId });
 
   return (
     <Paper
@@ -35,8 +35,10 @@ const TaskSortableItem = ({ id, item, listId }) => {
         gap={2}
         justifyContent={'space-between'}
       >
-        <Typography variant='body2' fontWeight={600}>{item.title}</Typography>
-        <Typography variant='caption'>
+        <Typography variant="body2" fontWeight={600}>
+          {item.title}
+        </Typography>
+        <Typography variant="caption">
           {detailProjectContext.getProjectInitials}-{item.internal_id}
         </Typography>
       </Stack>

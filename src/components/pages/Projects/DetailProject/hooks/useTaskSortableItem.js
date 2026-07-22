@@ -2,7 +2,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import useDetailProjectContext from './useDetailProjectContext';
 import { DRAG_CARD } from '@/utils/constants';
 
-const useTaskSortableItems = ({ id, item, listId }) => {
+const useTaskSortableItem = ({ id, item, listId }) => {
   const detailProjectContext = useDetailProjectContext();
 
   const {
@@ -31,4 +31,4 @@ const useTaskSortableItems = ({ id, item, listId }) => {
   };
 };
 
-export default useTaskSortableItems;
+export default useTaskSortableItem;

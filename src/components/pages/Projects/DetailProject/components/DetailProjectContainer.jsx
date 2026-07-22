@@ -38,7 +38,11 @@ const DetailProjectContainer = () => {
     }
     if (activeDragItem && activeDragItem.type === DRAG_CARD) {
       return (
-        <TaskSortableItem listId={activeDragItem.list_public_id} id={activeDragItem.public_id} item={activeDragItem} />
+        <TaskSortableItem
+          listId={activeDragItem.list_public_id}
+          id={activeDragItem.public_id}
+          item={activeDragItem}
+        />
       );
     }
     return <></>;

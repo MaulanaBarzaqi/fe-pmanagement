@@ -2,6 +2,7 @@ import { Check, Close, Delete } from '@mui/icons-material';
 import { Box, colors, IconButton, Stack, Typography } from '@mui/material';
 import useListSortableItem from '../hooks/useListSortableItem';
 import TaskItems from './TaskItems';
+import { CSS } from '@dnd-kit/utilities';
 
 const ListSortableItem = ({ id, item }) => {
   const {
@@ -13,13 +14,19 @@ const ListSortableItem = ({ id, item }) => {
     setShowConfirmDelete,
     taskItems,
   } = useListSortableItem({ id, item });
+
+  const style = {
+    transform: CSS.Translate.toString(sortable.transform),
+    transition: sortable.transition,
+  };
+
   const renderDeleteList = () => {
     if (isShowConfirmDelete) {
       return (
         <Stack direction={'row'} gap={1}>
           <IconButton
             size="small"
-            color={'default'}
+            color={'success'}
             onClick={handleDeleteList(item.public_id)}
           >
             <Check />
@@ -27,7 +34,7 @@ const ListSortableItem = ({ id, item }) => {
 
           <IconButton
             size="small"
-            color={'success'}
+            color={'default'}
             onClick={() => setShowConfirmDelete(false)}
           >
             <Close />
@@ -49,10 +56,11 @@ const ListSortableItem = ({ id, item }) => {
 
   return (
     <Box
+      style={style}
       sx={{
         flexBasis: 300,
         flexShrink: 0,
-        overflow: 'hidden',
+        overflowX: 'hidden',
         borderRadius: 1,
         px: 0.5,
         mx: -0.5,
@@ -95,7 +103,7 @@ const ListSortableItem = ({ id, item }) => {
         </Stack>
         {renderDeleteList()}
       </Stack>
-      <TaskItems listDroppable={droppable} listItem={item}/>
+      <TaskItems listDroppable={droppable} listItem={item} />
     </Box>
   );
 };

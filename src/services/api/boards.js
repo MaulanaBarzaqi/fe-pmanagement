@@ -18,7 +18,7 @@ const boards = {
   async lists(boardId) {
     return network.get(`/api/v1/boards/${boardId}/lists`);
   },
-  async updateListPosition(boardId, data) {
+  async updateListsPosition(boardId, data) {
     return network.put(`/api/v1/boards/${boardId}/positions`, data);
   },
   async addMember(boardId, userIds) {

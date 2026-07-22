@@ -16,7 +16,7 @@ const TaskItems = ({ listDroppable, listItem }) => {
   const renderTaskDropZone = (listItem) => {
     const isCardDragging =
       active &&
-      active.data.current.list_public_id === listItem.public_id &&
+      active.data.current.list_public_id !== listItem.public_id &&
       active.data.current.type === DRAG_CARD;
 
     if (isCardDragging) {
@@ -65,7 +65,7 @@ const TaskItems = ({ listDroppable, listItem }) => {
     <Box
       sx={{
         height: 850,
-        overflow: 'auto',
+        overflowY: 'auto',
         position: 'relative',
       }}
     >
@@ -84,7 +84,7 @@ const TaskItems = ({ listDroppable, listItem }) => {
             />
           ))}
         </SortableContext>
-        <CreateNewTask listId={listItem.public_id}/>
+        <CreateNewTask listId={listItem.public_id} />
       </Stack>
     </Box>
   );
