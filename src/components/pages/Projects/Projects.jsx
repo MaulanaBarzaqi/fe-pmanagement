@@ -1,4 +1,4 @@
-import { Box, Button, colors, Paper, Stack, Typography } from '@mui/material';
+import { Box, Button, Stack } from '@mui/material';
 
 import { Link } from 'react-router';
 
@@ -104,7 +104,7 @@ const Projects = () => {
               label: 'Deskripsi',
             },
             {
-              id: 'title',
+              id: 'created_at',
               label: 'Tanggal dibuat',
               render(data) {
                 return (
@@ -113,7 +113,7 @@ const Projects = () => {
               },
             },
             {
-              id: 'title',
+              id: 'action',
               label: 'Aksi',
               render(data) {
                 return (

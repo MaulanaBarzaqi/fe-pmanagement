@@ -30,7 +30,7 @@ const Table = ({ columns, data, isLoading }) => {
         <TableBody>
           {data.map((row) => (
             <TableRow
-              key={row.id}
+              key={row.public_id || row.id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               {columns.map((column) => (
