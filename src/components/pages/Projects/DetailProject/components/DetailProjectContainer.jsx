@@ -16,6 +16,7 @@ import {
 } from '@dnd-kit/sortable';
 import { DRAG_CARD, DRAG_LIST } from '@/utils/constants';
 import TaskSortableItem from './TaskSortableItem';
+import ProjectInfo from './ProjectInfo';
 
 const DetailProjectContainer = () => {
   const {
@@ -67,6 +68,7 @@ const DetailProjectContainer = () => {
         onDragCancel={handleDragCancel}
         sensors={sensors}
       >
+        <ProjectInfo />
         <SortableContext
           items={boardListDataMapPublicIds}
           strategy={horizontalListSortingStrategy}
