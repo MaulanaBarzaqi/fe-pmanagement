@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useLoaderData, useSearchParams } from 'react-router';
 import useDetailProjectContext from '../../DetailProject/hooks/useDetailProjectContext';
 import services from '@/services';
 import { useForm } from 'react-hook-form';
-import dayjs from 'dayjs';
+import useModalTaskDetailContext from './useModalTaskDetailContext';
 
 const useModalTaskDetail = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const [taskDetailData, setTaskDetailData] = useState({});
+  const [ _, setSearchParams] = useSearchParams();
 
   const [isLoading, setLoading] = useState(false);
 
@@ -18,25 +16,17 @@ const useModalTaskDetail = () => {
 
   const [editDueDate, setEditDueDate] = useState(false);
 
-  const [editAssignee, setEditAssignee] = useState(false);
-
   const [isShowConfirmDelete, setShowConfirmDelete] = useState(false);
 
   const detailProjectData = useLoaderData();
 
   const detailProjectContext = useDetailProjectContext();
 
-  const taskId = searchParams.get('taskId');
+  const modalTaskDetailContext = useModalTaskDetailContext();
 
-  const listId = searchParams.get('listId');
+const { taskId, listId, taskDetailData, fetchTaskDetail } = modalTaskDetailContext;
 
   const formTask = useForm();
-
-  const fetchTaskDetail = async (taskId) => {
-    const response = await services.cards.getDetail(taskId);
-
-    setTaskDetailData(response.data.data);
-  };
 
   const onSubmit = async (values) => {
     setLoading(true);
@@ -67,33 +57,21 @@ const useModalTaskDetail = () => {
     await detailProjectContext.fetchBoardLists();
   };
 
-  useEffect(() => {
-    if (taskId && listId) {
-      fetchTaskDetail(taskId);
-    }
-  }, [taskId, listId]);
-
   return {
-    searchParams,
     taskDetailData,
     isLoading,
     editDescription,
     editTitle,
     editDueDate,
-    editAssignee,
     isShowConfirmDelete,
 
-    setSearchParams,
-    setTaskDetailData,
     setLoading,
     setEditDescription,
     setEditTitle,
     setEditDueDate,
-    setEditAssignee,
     setShowConfirmDelete,
 
     detailProjectData,
-    detailProjectContext,
     taskId,
     listId,
     formTask,
